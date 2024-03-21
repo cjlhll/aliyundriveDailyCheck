@@ -57,7 +57,8 @@ function sign_in(access_token, remarks) {
     .then(async json => {
       if (!json.success) {
         sendMessage.push('签到失败', json.message)
-        return Promise.reject(sendMessage.join(', '))
+        return sign_in(access_token, remarks)
+        // return Promise.reject(sendMessage.join(', '))
       }
 
       sendMessage.push('签到成功')
@@ -99,7 +100,8 @@ function sign_in(access_token, remarks) {
     .catch(e => {
       sendMessage.push('签到失败')
       sendMessage.push(e.message)
-      return Promise.reject(sendMessage.join(', '))
+      return sign_in(access_token, remarks)
+      // return Promise.reject(sendMessage.join(', '))
     })
 }
 
